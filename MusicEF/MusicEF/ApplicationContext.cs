@@ -24,6 +24,11 @@ namespace MusicEF
             modelBuilder.ApplyConfiguration(new ArtistSongConfiguration());
             modelBuilder.ApplyConfiguration(new SongConfiguration());
             modelBuilder.ApplyConfiguration(new GenreConfiguration());
+            modelBuilder
+            .Entity<Artist>()
+            .HasMany(c => c.Songs)
+            .WithMany(s => s.Artists)
+            .UsingEntity<ArtistSong>(r => r.HasOne(r => r.Song).WithMany(r => r.ArtistSong).HasForeignKey(r => r.SongId), l => l.HasOne(l => l.Artist).WithMany(l => l.ArtistSong).HasForeignKey(l => l.ArtistID));
         }
     }
 }

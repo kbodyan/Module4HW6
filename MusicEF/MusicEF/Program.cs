@@ -11,7 +11,14 @@ namespace MusicEF
         {
             using (var context = new SampleContextFactory().CreateDbContext(args))
             {
-                _ = AddToDB(context);
+                if (!context.Artist.Any())
+                {
+                    AddToDB(context).GetAwaiter().GetResult();
+                }
+
+                Linq.First(context).GetAwaiter().GetResult();
+                Linq.Second(context).GetAwaiter().GetResult();
+                Linq.Third(context).GetAwaiter().GetResult();
             }
         }
 
@@ -37,6 +44,7 @@ namespace MusicEF
                 new Song { Title = "A Hard Day's Night", Genre = rock, Duration = new TimeSpan(0, 2, 34), ReleasedDate = new DateTime(1964, 7, 10) },
                 new Song { Title = "And I Love Her", Genre = pop, Duration = new TimeSpan(0, 2, 32), ReleasedDate = new DateTime(1964, 7, 20) },
                 new Song { Title = "Don't Be Aggressive", Genre = pop, Duration = new TimeSpan(0, 4, 45), ReleasedDate = new DateTime(1992, 1, 1) },
+                new Song { Title = "Калинка-Малинка", Genre = pop, Duration = new TimeSpan(0, 4, 45), ReleasedDate = new DateTime(1892, 1, 1) }
             };
             await context.Song.AddRangeAsync(songs);
             var artistSong = new List<ArtistSong>

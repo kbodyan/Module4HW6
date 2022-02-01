@@ -11,6 +11,7 @@ namespace MusicEF
         public DateTime ReleasedDate { get; set; }
         public int? GenreId { get; set; }
         public Genre? Genre { get; set; }
+        public List<Artist> Artists { get; set; } = new List<Artist>();
         public List<ArtistSong> ArtistSong { get; set; } = new List<ArtistSong>();
     }
 }
