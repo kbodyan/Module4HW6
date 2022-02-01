@@ -1,8 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using FirstEF.Entities;
-using FirstEF.EntitiesConfiguration;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace MusicEF
 {
@@ -13,24 +9,21 @@ namespace MusicEF
         {
         }
 
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Office> Offices { get; set; }
-        public DbSet<Project> Projects { get; set; }
-        public DbSet<Title> Titles { get; set; }
-        public DbSet<EmployeeProject> EmployeeProjects { get; set; }
+        public DbSet<Artist> Artist { get; set; }
+        public DbSet<ArtistSong> ArtistSong { get; set; }
+        public DbSet<Song> Song { get; set; }
+        public DbSet<Genre> Genre { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=CompanyDB;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
-            modelBuilder.ApplyConfiguration(new OfficeConfiguration());
-            modelBuilder.ApplyConfiguration(new TitleConfiguration());
-            modelBuilder.ApplyConfiguration(new ProjectConfiguration());
-            modelBuilder.ApplyConfiguration(new EmployeeProjectConfiguration());
+            modelBuilder.ApplyConfiguration(new ArtistConfiguration());
+            modelBuilder.ApplyConfiguration(new ArtistSongConfiguration());
+            modelBuilder.ApplyConfiguration(new SongConfiguration());
+            modelBuilder.ApplyConfiguration(new GenreConfiguration());
         }
     }
 }

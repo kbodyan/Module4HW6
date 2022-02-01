@@ -7,6 +7,8 @@
 	  <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	  <WarningsAsErrors />
 	  <NoWarn>SA1516</NoWarn>
+	  <NoWarn>SA1600</NoWarn>
+	  <NoWarn>CS8632</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +31,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EntitiesConfigurations\" />
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
